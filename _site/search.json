@@ -1,0 +1,16 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "A Demonstration of Correlation Analysis in Python and Quarto",
+    "section": "",
+    "text": "Introduction\n\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nimport seaborn as sns\n\ndf = sns.load_dataset('car_crashes')\n\nStudents in the Data Science in Human Behavior Program at UW-Madison are interested if there is a correlation between number of alcohol related car crashes and speeding related car crashes.\n\n\nLiterature Review\n\n\nMethod\nWe will evaluate this relationship using simple correlation analysis and also a scatterplot. These two methods are classic and traditional starting points when evaluating data like these.\n\n\nResults\n\ncorr_val = np.array(df[['speeding', 'alcohol']].corr())[0][1]\n\nnarrative = \"a very strong negative correlation\"\n\nif corr_val &gt; 0.8:\n  narrative = \"a very strong positive correlation\"\nelif corr_val &gt; 0.4:\n  narrative = \"a moderate positive correlation\"\nelif corr_val &gt; 0:\n  narrative = \"a positive but weak correlation\"\nelif corr_val &gt; -0.4:\n  narrative = \"a moderate negative correlation\"\n\nUsing the classic simple Pearson correlation approach these data produce a correlation coefficient of 0.66972. Given this result we conclude that the relationship is a moderate positive correlation.\n\nfig, ax = plt.subplots(figsize=(6, 6))\n\nsns.regplot(data=df, y = 'alcohol', x='speeding', ax=ax)\n\nplt.ylabel('Alcohol Related Car Crashes')\nplt.xlabel('Speeding Related Car Crashes')\n\n\n\n\n\n\n\n\n\n\nDiscussion\nNow that this long standing probelm of over 10 minutes is resolved thanks to the dilligent efforts of UW Madion’s DSHB program, science has once again triumphed in establishing that there is a moderate positive relationship between alcohol related car crashes and speeding related car crashes as a matter of empirically certain ground truth."
+  }
+]

@@ -1,0 +1,70 @@
+---
+title: "A Demonstration of Correlation Analysis in Python and Quarto"
+authors:
+  - name: Hannah Huber
+    affiliation: University of Wisconsin - Madison 
+    roles: writing
+    corresponding: true
+execute:
+  echo: true 
+---
+
+
+# Introduction 
+
+```{python}
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+import seaborn as sns
+
+df = sns.load_dataset('car_crashes')
+```
+
+Students in the Data Science in Human Behavior Program at UW-Madison are interested if there is a correlation between number of alcohol related car crashes and speeding related car crashes.   
+
+# Literature Review 
+
+
+
+# Method 
+
+We will evaluate this relationship using simple correlation analysis and also a scatterplot. These two methods are classic and traditional starting points when evaluating data like these. 
+
+# Results 
+
+```{python}
+
+corr_val = np.array(df[['speeding', 'alcohol']].corr())[0][1]
+
+narrative = "a very strong negative correlation"
+
+if corr_val > 0.8:
+  narrative = "a very strong positive correlation"
+elif corr_val > 0.4:
+  narrative = "a moderate positive correlation"
+elif corr_val > 0:
+  narrative = "a positive but weak correlation"
+elif corr_val > -0.4:
+  narrative = "a moderate negative correlation"
+
+```
+
+Using the classic simple Pearson correlation approach these data produce a correlation coefficient of `{python} f"{corr_val:.5f}"`. Given this result we conclude that the relationship is `{python} f"{narrative}"`.
+
+```{python}
+
+
+fig, ax = plt.subplots(figsize=(6, 6))
+
+sns.regplot(data=df, y = 'alcohol', x='speeding', ax=ax)
+
+plt.ylabel('Alcohol Related Car Crashes')
+plt.xlabel('Speeding Related Car Crashes')
+
+```
+
+# Discussion 
+
+Now that this long standing probelm of over 10 minutes is resolved thanks to the dilligent efforts of UW Madion's DSHB program, science has once again triumphed in establishing that there is a moderate positive relationship between alcohol related car crashes and speeding related car crashes as a matter of empirically certain ground truth. 
